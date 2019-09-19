@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {{ form_row(form.beginDate) }}
+    {{ form_row(form.endDate) }}
+{#    {% if form.offer is defined %}#}
+{#        {{ form_row(form.offer) }}#}
+{#    {% endif %}#}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

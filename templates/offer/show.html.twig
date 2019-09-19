@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer{% endblock %}
+
+{% block body %}
+    <h1>Offer</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ offer.id }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>
+                {% if offer.image is not null %}
+                    <img src="{{ vich_uploader_asset(offer.image, 'imageFile', 'App\\Entity\\Image') }}" style="height: 45%"/>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ offer.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ offer.description }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ offer.city }}</td>
+        </tr>
+        <tr>
+            <th>AvailabilityTime</th>
+            <td>{{ offer.availabilityTime ? offer.availabilityTime.format('%y year(s), %m month(s), %d day(s)') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Available</th>
+            <td>{{ offer.available ? 'Yes' : 'No' }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {#    <a href="{{ path('offer_index') }}">back to list</a>#}
+
+    {% if offer.owner == app.user %}
+        <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+        {{ include('offer/_delete_form.html.twig') }}
+    {% else %}
+        <a href="{{ path('booking_new') }}">Book it</a>
+    {% endif %}
+{% endblock %}

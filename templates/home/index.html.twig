@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <header>
+        <h1>AirSymfony</h1>
+    </header>
+
+    <div class="body">
+        {% for offer in last_offers %}
+            {% if offer.available %}
+                <a href="./offer/{{ offer.id }}">
+                    <div class="oneOffer">
+                        {% if offer.image is not null %}
+                            <img src="{{ vich_uploader_asset(offer.image, 'imageFile', 'App\\Entity\\Image') }}" style="width: 20%"/>
+                        {% endif %}
+                        <h3>{{ offer.title }}</h3>
+                        <p>{{ offer.description }}</p>
+                        <p>{{ offer.city }}</p>
+                        <a href="{{ path('booking_new_from_offer', {'offer': offer.id}) }}">Book it</a>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <footer>
+        footer
+    </footer>
+
+{% endblock %}

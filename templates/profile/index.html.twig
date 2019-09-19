@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block body %}
+
+    <h1>My Profile: {{ app.user }}</h1>
+
+    <h2>My Offers</h2>
+    <ul>
+        {% for current in app.user.relatedOffers %}
+            <li>
+                <a href="./offer/{{ current.id }}">{{ current.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>My Bookings</h2>
+    <ul>
+        {% for current in app.user.relatedBookings %}
+            <li>
+                <a>{{ current.Offer.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
